@@ -1,0 +1,18 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Node
+node_modules/
+dist/
+
+# Env & Certs
+.env
+certs/
+
+# Test reports
+playwright-report/
+test-results/
+coverage/
+.nyc_output/

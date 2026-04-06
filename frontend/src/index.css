@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+	/* Colors from legacy tailwind.config.js */
+	--color-background: #131313;
+	--color-surface: #131313;
+	--color-primary: #91d2d2;
+	--color-secondary: #c6c6c7;
+	--color-tertiary: #ffb4a8;
+	--color-error: #ffb4ab;
+
+	--color-on-background: #e2e2e2;
+	--color-on-surface: #e2e2e2;
+	--color-on-primary: #003737;
+	--color-on-secondary: #2f3131;
+	--color-on-tertiary: #690100;
+	--color-on-error: #690005;
+
+	--color-primary-container: #5b9b9b;
+	--color-secondary-container: #454747;
+	--color-tertiary-container: #ff5540;
+	--color-error-container: #93000a;
+
+	--color-on-primary-container: #002f30;
+	--color-on-secondary-container: #b4b5b5;
+	--color-on-tertiary-container: #5c0000;
+	--color-on-error-container: #ffdad6;
+
+	--color-surface-dim: #131313;
+	--color-surface-bright: #393939;
+	--color-surface-container-lowest: #0e0e0e;
+	--color-surface-container-low: #1b1b1b;
+	--color-surface-container: #1f1f1f;
+	--color-surface-container-high: #2a2a2a;
+	--color-surface-container-highest: #353535;
+	--color-surface-variant: #353535;
+	--color-on-surface-variant: #bfc8c8;
+	--color-outline: #899392;
+	--color-outline-variant: #3f4948;
+
+	--color-primary-fixed: #aceeee;
+	--color-primary-fixed-dim: #91d2d2;
+	--color-on-primary-fixed: #002020;
+	--color-on-primary-fixed-variant: #004f50;
+
+	--color-secondary-fixed: #e2e2e2;
+	--color-secondary-fixed-dim: #c6c6c7;
+	--color-on-secondary-fixed: #1a1c1c;
+	--color-on-secondary-fixed-variant: #454747;
+
+	--color-tertiary-fixed: #ffdad4;
+	--color-tertiary-fixed-dim: #ffb4a8;
+	--color-on-tertiary-fixed: #410000;
+	--color-on-tertiary-fixed-variant: #930100;
+
+	/* Typography Preferences */
+	--font-sans: "Space Grotesk", sans-serif;
+	--font-mono: "Space Grotesk", monospace;
+	--font-headline: "Space Grotesk";
+	--font-body: "Space Grotesk";
+	--font-label: "Space Grotesk";
+
+	/* Border Radius (Enforced 0px for technical aesthetic) */
+	--radius-none: 0px;
+	--radius-sm: 0px;
+	--radius-md: 0px;
+	--radius-lg: 0px;
+	--radius-xl: 0px;
+	--radius-2xl: 0px;
+	--radius-3xl: 0px;
+	--radius-full: 0px;
+}
+
+@layer base {
+	body {
+		background-color: var(--color-background);
+		color: #e2e2e2;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		font-family: "Space Grotesk", sans-serif;
+		-webkit-font-smoothing: antialiased;
+		display: flex;
+		flex-direction: column;
+		height: 100vh;
+		overflow: hidden;
+	}
+
+	/* 0px border radius enforcement for the whole app */
+	* {
+		border-radius: 0 !important;
+	}
+}
+
+.grid-bg {
+	background-size: 40px 40px;
+	background-image: radial-gradient(circle, #3f4948 1px, transparent 1px);
+	opacity: 0.1;
+}
+
+.schematic-border {
+	border: 1px solid rgba(145, 210, 210, 0.15);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+	width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+	background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background: #3f4948;
+}
+
+.schematic-corner-tl {
+	position: relative;
+}
+.schematic-corner-tl::before {
+	content: "";
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	width: 15px;
+	height: 15px;
+	border-top: 1px solid #91d2d2;
+	border-left: 1px solid #91d2d2;
+}
+
+.schematic-corner-br {
+	position: relative;
+}
+.schematic-corner-br::after {
+	content: "";
+	position: absolute;
+	bottom: -1px;
+	right: -1px;
+	width: 15px;
+	height: 15px;
+	border-bottom: 1px solid #91d2d2;
+	border-right: 1px solid #91d2d2;
+}
