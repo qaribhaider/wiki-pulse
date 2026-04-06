@@ -20,11 +20,21 @@ interface SslOptions {
 	cert: string;
 }
 
+const formatPem = (pem?: string) => {
+	if (!pem) return '';
+	// Remove surrounding quotes if they exist (common in some .env parsers)
+	let cleaned = pem.trim();
+	if (cleaned.startsWith('"') && cleaned.endsWith('"')) {
+		cleaned = cleaned.substring(1, cleaned.length - 1);
+	}
+	return cleaned.replace(/\\n/g, '\n');
+};
+
 const sslOptions: SslOptions | boolean = KAFKA_CA_PEM && KAFKA_KEY_PEM && KAFKA_CERT_PEM
 	? {
-			ca: [KAFKA_CA_PEM.replace(/\\n/g, '\n')],
-			key: KAFKA_KEY_PEM.replace(/\\n/g, '\n'),
-			cert: KAFKA_CERT_PEM.replace(/\\n/g, '\n'),
+			ca: [formatPem(KAFKA_CA_PEM)],
+			key: formatPem(KAFKA_KEY_PEM),
+			cert: formatPem(KAFKA_CERT_PEM),
 		}
 	: true;
 
