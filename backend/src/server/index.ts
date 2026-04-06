@@ -93,8 +93,22 @@ setInterval(() => {
 	broadcast({ type: 'HEARTBEAT', data: { timestamp: Date.now() } });
 }, 5000);
 
-app.get('/health', (_req, res) => {
-	res.json({ status: 'ok', kafka: 'connected' });
+app.get('/health', async (_req, res) => {
+	try {
+		// Quick check if we can still contact the Kafka broker
+		await consumer.describeGroup();
+		res.status(200).json({ 
+			status: 'ok', 
+			kafka: 'connected',
+			uptime: process.uptime()
+		});
+	} catch (err) {
+		res.status(503).json({ 
+			status: 'error', 
+			kafka: 'disconnected',
+			uptime: process.uptime()
+		});
+	}
 });
 
 const PORT = Number.parseInt(process.env.PORT || '3001', 10);
